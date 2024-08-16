@@ -20,3 +20,12 @@ matches:
         type: shell
         params:
           cmd: "echo $ESPANSO_CLIPBOARD | tr '[:lower:]' '[:upper:]'"
+  - trigger: "::cap"
+    replace: "{{output}}"
+    vars:
+      - name: "clipboard"
+        type: "clipboard"
+      - name: output
+        type: shell
+        params:
+          cmd: "echo $ESPANSO_CLIPBOARD | sed -e 's/\\b\\(.\\)/\\u\\1/g'"
